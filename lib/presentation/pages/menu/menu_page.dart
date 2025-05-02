@@ -4,78 +4,110 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.blue,  
+      backgroundColor: Colors.blue, // Set the background color to blue
       child: Column(
         children: [
-          const DrawerHeader(child: Text("Menu", style: TextStyle(color: Colors.white))),
-          
-          
+          const DrawerHeader(
+              child: Text("Menu", style: TextStyle(color: Colors.white))),
+
           Container(
-            color: Colors.white,  
+            padding:
+                EdgeInsets.only(left: 16), // Push the content to the left a bit
+            decoration: BoxDecoration(
+              color: Colors.white, // White background for selected item
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30), // Circular on the right side
+                bottomRight: Radius.circular(30), // Circular on the right side
+              ),
+            ),
             child: ListTile(
-              leading: Icon(Icons.home, color: Colors.white), // White icon
-              title: Text("Home", style: TextStyle(color: Colors.white)), // White text
+              leading: Icon(Icons.home,
+                  color: Colors.blue), // Blue icon for selected
+              title: Text("Home",
+                  style: TextStyle(color: Colors.blue)), // Blue text
               onTap: () {
-                
+                // Handle home item click
               },
             ),
           ),
 
-           
           ListTile(
             leading: Icon(Icons.person, color: Colors.white),
             title: Text("Profile", style: TextStyle(color: Colors.white)),
             onTap: () {
-              
+              // Handle profile click
             },
           ),
           ListTile(
             leading: Icon(Icons.location_on, color: Colors.white),
             title: Text("Nearby", style: TextStyle(color: Colors.white)),
             onTap: () {
-               
+              // Handle nearby click
             },
           ),
+          Divider(color: Colors.white),
           ListTile(
             leading: Icon(Icons.bookmark, color: Colors.white),
             title: Text("Bookmark", style: TextStyle(color: Colors.white)),
             onTap: () {
-              
+              // Handle bookmark click
             },
           ),
 
-          
+          Stack(
+            children: [
+              ListTile(
+                leading: Stack(
+                  children: [
+                    Icon(Icons.notifications, color: Colors.white),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ],
+                ),
+                title: Text("Notifications",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  // Handle notifications click
+                },
+              ),
+            ],
+          ),
+
+          Stack(
+            children: [
+              ListTile(
+                leading:  Stack(
+                  children: [
+                    Icon(Icons.message, color: Colors.white),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ],
+                ),
+                title: Text("Messages", style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  // Handle messages click
+                },
+              ),
+            ],
+          ),
           Divider(color: Colors.white),
-
-          
           ListTile(
-            leading: Icon(Icons.notifications, color: Colors.white),
-            title: Text("Notifications", style: TextStyle(color: Colors.white)),
-            trailing: Container(
-              width: 12,
-              height: 12,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
-            ),  
+            leading: Icon(Icons.help, color: Colors.white),
+            title: Text("Help", style: TextStyle(color: Colors.white)),
             onTap: () {
-              // Handle notifications click
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.message, color: Colors.white),
-            title: Text("Messages", style: TextStyle(color: Colors.white)),
-            trailing: Container(
-              width: 12,
-              height: 12,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
-            ),  
-            onTap: () {
-              // Handle messages click
+              // Handle settings click
             },
           ),
           ListTile(
@@ -85,9 +117,6 @@ class MenuPage extends StatelessWidget {
               // Handle settings click
             },
           ),
-
-          // White separation line
-          Divider(color: Colors.white),
 
           // Logout item
           ListTile(
