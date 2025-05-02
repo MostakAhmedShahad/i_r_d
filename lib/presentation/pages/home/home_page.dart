@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: ['House', 'Apartment', 'Hotel', 'Villa'].map((e) {
+                  children: ['House', 'Apartment', 'Hotel room', 'Villa'].map((e) {
                     return CategoryChip(
                       label: e,
                       isSelected: controller.selectedCategory.value == e,
