@@ -8,6 +8,8 @@ class PropertyModel extends Property {
     required super.bedrooms,
     required super.bathrooms,
     required super.gallery,
+     
+
   });
 
   static List<PropertyModel> sampleList() {
@@ -16,7 +18,7 @@ class PropertyModel extends Property {
         id: '1',
         name: 'Dreamsville House',
         location: 'Jl. Sultan Iskandar Muda',
-        imageUrl: 'https://via.placeholder.com/400x200',
+        imageUrl: 'assets/images/home1.jpg',
         price: 2500000000,
         bedrooms: 6,
         bathrooms: 4,
@@ -30,7 +32,7 @@ class PropertyModel extends Property {
         id: '2',
         name: 'Ascot House',
         location: 'Jl. Cilandak Tengah',
-        imageUrl: 'https://via.placeholder.com/400x200',
+        imageUrl: 'assets/images/home2.jpg',
         price: 2000000000,
         bedrooms: 5,
         bathrooms: 3,
@@ -52,6 +54,7 @@ class Property {
   final int bedrooms;
   final int bathrooms;
   final List<String> gallery;
+   
 
   Property({
     required this.id,
@@ -62,5 +65,6 @@ class Property {
     required this.bedrooms,
     required this.bathrooms,
     required this.gallery,
+       
   });
 }
