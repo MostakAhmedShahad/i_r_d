@@ -1,25 +1,226 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:i_r_d/domain/entities/property.dart';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:i_r_d/domain/entities/property.dart';
 
 class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // You can retrieve property using Get.arguments
+    final Property property = Get.arguments;
+
     return Scaffold(
-      appBar: AppBar(title: Text('Details')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network('https://via.placeholder.com/400x200'),
-            Text("Dreamsville House", style: TextStyle(fontSize: 20)),
-            Text("6 Bedroom · 4 Bathroom"),
-            Text(
-              "A 3-level house with a modern design...",
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
+            // Top image with overlay
+            Stack(
+              children: [
+                Image.asset(
+                  property.imageUrl,
+                  height: 280,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  
+                ),
+                Container(
+                  height: 280,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Colors.black.withOpacity(0.5),
+                        Colors.transparent
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 16,
+                  top: 40,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.black54,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () => Get.back(),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 16,
+                  top: 40,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.black54,
+                    child: Icon(Icons.bookmark_border, color: Colors.white),
+                  ),
+                ),
+                Positioned(
+                  bottom: 16,
+                  left: 16,
+                  right: 16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        property.name,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        property.location,
+                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Icon(Icons.bed, color: Colors.white),
+                          SizedBox(width: 4),
+                          Text('${property.bedrooms} Bedroom',
+                              style: TextStyle(color: Colors.white)),
+                          SizedBox(width: 16),
+                          Icon(Icons.bathtub, color: Colors.white),
+                          SizedBox(width: 4),
+                          Text('${property.bathrooms} Bathroom',
+                              style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Rent Now"))
+
+           
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 
+                  Text('Description',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 6),
+                  Text(
+                    'The 3-level house that has a modern design, a large pool & a garage that fits up to four cars. The interior is designed with elegance and comfort in mind...',
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  TextButton(onPressed: () {}, child: Text('Read More')),
+
+                  Divider(height: 30),
+
+                  // Owner Info
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/human1.jpg'),
+                        radius: 26,
+                      ),
+                      SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(property.ownerName,
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text('Owner', style: TextStyle(color: Colors.grey)),
+                        ],
+                      ),
+                      Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.phone, color: Colors.blue),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.message, color: Colors.blue),
+                      ),
+                    ],
+                  ),
+
+                  Divider(height: 30),
+
+                  // Gallery
+                  Text('Gallery',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: property.gallery.length?? 0,
+                      itemBuilder: (context, index) => Container(
+                        margin: EdgeInsets.only(right: 8),
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                            image: NetworkImage(property.gallery?[index]??''),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 20),
+
+                  // Google Map Placeholder
+                  Text('Location',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  Container(
+                    height: 160,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image:
+                            AssetImage('assets/images/map2.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 20),
+
+                  // Price and Rent Now
+                  Row(
+                    children: [
+                      Text(
+                        'Rp. ${property.price.toStringAsFixed(0)} / Year',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 14),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child:
+                            Text('Rent Now', style: TextStyle(fontSize: 16,color: Colors.white)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
