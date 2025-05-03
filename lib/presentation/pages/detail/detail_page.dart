@@ -102,7 +102,8 @@ class DetailPage extends StatelessWidget {
 
             // Details Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -136,13 +137,26 @@ class DetailPage extends StatelessWidget {
                         ],
                       ),
                       Spacer(),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.phone, color: Colors.blue),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.phone, color: Colors.white),
+                        ),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.message, color: Colors.blue),
+                      SizedBox(width: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                           borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.message, color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
