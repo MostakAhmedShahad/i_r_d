@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:i_r_d/domain/entities/property.dart';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:i_r_d/domain/entities/property.dart';
-
 class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,96 +11,101 @@ class DetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Top image with overlay
-            Stack(
-              children: [
-                Image.asset(
-                  property.imageUrl,
-                  height: 280,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  
-                ),
-                Container(
-                  height: 280,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Colors.black.withOpacity(0.5),
-                        Colors.transparent
-                      ],
+            // Top image with overlay and rounded corners
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      property.imageUrl,
+                      height: 280,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                ),
-                Positioned(
-                  left: 16,
-                  top: 40,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.black54,
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () => Get.back(),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  right: 16,
-                  top: 40,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.black54,
-                    child: Icon(Icons.bookmark_border, color: Colors.white),
-                  ),
-                ),
-                Positioned(
-                  bottom: 16,
-                  left: 16,
-                  right: 16,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        property.name,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                    Container(
+                      height: 280,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withOpacity(0.5),
+                            Colors.transparent
+                          ],
                         ),
                       ),
-                      SizedBox(height: 4),
-                      Text(
-                        property.location,
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                    ),
+                    Positioned(
+                      left: 16,
+                      top: 40,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.black54,
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back, color: Colors.white),
+                          onPressed: () => Get.back(),
+                        ),
                       ),
-                      SizedBox(height: 8),
-                      Row(
+                    ),
+                    Positioned(
+                      right: 16,
+                      top: 40,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.black54,
+                        child: Icon(Icons.bookmark_border, color: Colors.white),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 16,
+                      left: 16,
+                      right: 16,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(Icons.bed, color: Colors.white),
-                          SizedBox(width: 4),
-                          Text('${property.bedrooms} Bedroom',
-                              style: TextStyle(color: Colors.white)),
-                          SizedBox(width: 16),
-                          Icon(Icons.bathtub, color: Colors.white),
-                          SizedBox(width: 4),
-                          Text('${property.bathrooms} Bathroom',
-                              style: TextStyle(color: Colors.white)),
+                          Text(
+                            property.name,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            property.location,
+                            style:
+                                TextStyle(color: Colors.white70, fontSize: 14),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.bed, color: Colors.white),
+                              SizedBox(width: 4),
+                              Text('${property.bedrooms} Bedroom',
+                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(width: 16),
+                              Icon(Icons.bathtub, color: Colors.white),
+                              SizedBox(width: 4),
+                              Text('${property.bathrooms} Bathroom',
+                                  style: TextStyle(color: Colors.white)),
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
 
-           
+            // Details Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 
                   Text('Description',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -157,7 +158,7 @@ class DetailPage extends StatelessWidget {
                     height: 100,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: property.gallery.length?? 0,
+                      itemCount: property.gallery.length ?? 0,
                       itemBuilder: (context, index) => Container(
                         margin: EdgeInsets.only(right: 8),
                         width: 100,
@@ -165,7 +166,7 @@ class DetailPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           image: DecorationImage(
-                            image: NetworkImage(property.gallery?[index]??''),
+                            image: NetworkImage(property.gallery?[index] ?? ''),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -175,25 +176,23 @@ class DetailPage extends StatelessWidget {
 
                   SizedBox(height: 20),
 
-                  // Google Map Placeholder
+                  // Google Map with rounded corners and padding
                   Text('Location',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 10),
-                  Container(
-                    height: 160,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image:
-                            AssetImage('assets/images/map2.png'),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        'assets/images/map2.png',
+                        height: 160,
+                        width: double.infinity,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20),
 
                   // Price and Rent Now
                   Row(
@@ -213,8 +212,9 @@ class DetailPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12)),
                         ),
-                        child:
-                            Text('Rent Now', style: TextStyle(fontSize: 16,color: Colors.white)),
+                        child: Text('Rent Now',
+                            style:
+                                TextStyle(fontSize: 16, color: Colors.white)),
                       ),
                     ],
                   )
