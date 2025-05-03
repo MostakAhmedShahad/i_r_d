@@ -20,12 +20,9 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   // SizedBox(height: 40),
-
-                    // Location Row
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -33,8 +30,8 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Location",
-                                  style:
-                                      TextStyle(color: Colors.grey, fontSize: 12)),
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 12)),
                               Row(
                                 children: [
                                   Text("Jakarta",
@@ -49,7 +46,7 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
 
-                          // Notification with red dot opens drawer
+                          // Notification
                           Stack(
                             children: [
                               IconButton(
@@ -119,10 +116,36 @@ class HomePage extends StatelessWidget {
                       child: Row(
                         children: ['House', 'Apartment', 'Hotel room', 'Villa']
                             .map((e) {
-                          return CategoryChip(
-                            label: e,
-                            isSelected: controller.selectedCategory.value == e,
+                          final isSelected =
+                              controller.selectedCategory.value == e;
+                          return GestureDetector(
                             onTap: () => controller.changeCategory(e),
+                            child: Container(
+                              margin: EdgeInsets.only(right: 8),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? Colors.blueAccent
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? Colors.blueAccent
+                                      : Colors.grey,
+                                ),
+                              ),
+                              child: Text(
+                                e,
+                                style: TextStyle(
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                ),
+                              ),
+                            ),
                           );
                         }).toList(),
                       ),
@@ -135,8 +158,8 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Near from you",
-                            style:
-                                TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
                         Text("See more", style: TextStyle(color: Colors.blue)),
                       ],
                     ),
@@ -151,8 +174,8 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Best for you",
-                            style:
-                                TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
                         Text("See more", style: TextStyle(color: Colors.blue)),
                       ],
                     ),
