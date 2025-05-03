@@ -14,6 +14,6 @@ class HomeController extends GetxController {
 
   void changeCategory(String category) {
     selectedCategory.value = category;
-    // In real app, you'd filter property list
+     
   }
 }
