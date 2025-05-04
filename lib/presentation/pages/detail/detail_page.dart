@@ -107,7 +107,7 @@ class DetailPage extends StatelessWidget {
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 6),
                   Text(
-                    'The 3-level house that has a modern design, a large pool & a garage that fits up to four cars. The interior is designed with elegance and comfort in mind...',
+                    'The 3-level house that has a modern design, a large pool & also garage that fits up to four cars. The interior is designed with elegance and comfort in mind...',
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
