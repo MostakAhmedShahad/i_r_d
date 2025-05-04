@@ -6,12 +6,14 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Property property = Get.arguments;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Top image with overlay and rounded corners
+            // Top image with overlay
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: ClipRRect(
@@ -20,12 +22,12 @@ class DetailPage extends StatelessWidget {
                   children: [
                     Image.asset(
                       property.imageUrl,
-                      height: 280,
+                      height: screenHeight * 0.35,
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
                     Container(
-                      height: 280,
+                      height: screenHeight * 0.35,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -40,7 +42,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     Positioned(
                       left: 16,
-                      top: 40,
+                      top: MediaQuery.of(context).padding.top + 8,
                       child: CircleAvatar(
                         backgroundColor: Colors.black54,
                         child: IconButton(
@@ -51,7 +53,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     Positioned(
                       right: 16,
-                      top: 40,
+                      top: MediaQuery.of(context).padding.top + 8,
                       child: CircleAvatar(
                         backgroundColor: Colors.black54,
                         child: Icon(Icons.bookmark_border, color: Colors.white),
@@ -64,29 +66,24 @@ class DetailPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            property.name,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          Text(property.name,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
-                          Text(
-                            property.location,
-                            style:
-                                TextStyle(color: Colors.white70, fontSize: 14),
-                          ),
+                          Text(property.location,
+                              style:
+                                  TextStyle(color: Colors.white70, fontSize: 14)),
                           SizedBox(height: 8),
                           Row(
                             children: [
-                              Icon(Icons.bed, color: Colors.white),
+                              Icon(Icons.bed, color: Colors.white, size: 20),
                               SizedBox(width: 4),
                               Text('${property.bedrooms} Bedroom',
                                   style: TextStyle(color: Colors.white)),
-                              SizedBox(width: 16),
-                              Icon(Icons.bathtub, color: Colors.white),
+                              SizedBox(width: 12),
+                              Icon(Icons.bathtub, color: Colors.white, size: 20),
                               SizedBox(width: 4),
                               Text('${property.bathrooms} Bathroom',
                                   style: TextStyle(color: Colors.white)),
@@ -102,14 +99,12 @@ class DetailPage extends StatelessWidget {
 
             // Details Section
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Description',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 6),
                   Text(
                     'The 3-level house that has a modern design, a large pool & a garage that fits up to four cars. The interior is designed with elegance and comfort in mind...',
@@ -128,35 +123,22 @@ class DetailPage extends StatelessWidget {
                         radius: 26,
                       ),
                       SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(property.ownerName,
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('Owner', style: TextStyle(color: Colors.grey)),
+                          ],
+                        ),
+                      ),
+                      Row(
                         children: [
-                          Text(property.ownerName,
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text('Owner', style: TextStyle(color: Colors.grey)),
+                          _contactIcon(Icons.phone),
+                          SizedBox(width: 8),
+                          _contactIcon(Icons.message),
                         ],
-                      ),
-                      Spacer(),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.phone, color: Colors.white),
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                           borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.message, color: Colors.white),
-                        ),
                       ),
                     ],
                   ),
@@ -165,14 +147,13 @@ class DetailPage extends StatelessWidget {
 
                   // Gallery
                   Text('Gallery',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 10),
                   SizedBox(
                     height: 100,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: property.gallery.length ?? 0,
+                      itemCount: property.gallery.length,
                       itemBuilder: (context, index) => Container(
                         margin: EdgeInsets.only(right: 8),
                         width: 100,
@@ -180,7 +161,7 @@ class DetailPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           image: DecorationImage(
-                            image: NetworkImage(property.gallery?[index] ?? ''),
+                            image: NetworkImage(property.gallery[index]),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -190,33 +171,32 @@ class DetailPage extends StatelessWidget {
 
                   SizedBox(height: 20),
 
-                  // Google Map with rounded corners and padding
+                  // Map
                   Text('Location',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/images/map2.png',
-                        height: 160,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      'assets/images/map2.png',
+                      height: screenHeight * 0.22,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
                   ),
 
-                  // Price and Rent Now
+                  SizedBox(height: 20),
+
+                  // Price and Rent Button
                   Row(
                     children: [
-                      Text(
-                        'Rp. ${property.price.toStringAsFixed(0)} / Year',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Text(
+                          'Rp. ${property.price.toStringAsFixed(0)} / Year',
+                          style:
+                              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      Spacer(),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -227,16 +207,29 @@ class DetailPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12)),
                         ),
                         child: Text('Rent Now',
-                            style:
-                                TextStyle(fontSize: 16, color: Colors.white)),
+                            style: TextStyle(fontSize: 16, color: Colors.white)),
                       ),
                     ],
-                  )
+                  ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _contactIcon(IconData icon) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: IconButton(
+        onPressed: () {},
+        icon: Icon(icon, color: Colors.white),
       ),
     );
   }
