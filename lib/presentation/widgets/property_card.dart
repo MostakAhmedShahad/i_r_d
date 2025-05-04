@@ -42,7 +42,7 @@ class PropertyCard extends StatelessWidget {
           boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black26)],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(16),
           child: Stack(
             children: [
               // Background image
