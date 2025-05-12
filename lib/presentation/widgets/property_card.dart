@@ -90,7 +90,7 @@ class PropertyCard extends StatelessWidget {
                     Text(
                       property.location,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 15,
                         color: Colors.white70,
                         shadows: [Shadow(blurRadius: 3, color: Colors.black38)],
                       ),
