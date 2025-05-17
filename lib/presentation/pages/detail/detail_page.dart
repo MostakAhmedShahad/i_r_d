@@ -61,7 +61,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     Positioned(
                       bottom: 15,
-                      left: 16,
+                      left: 15,
                       right: 16,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
