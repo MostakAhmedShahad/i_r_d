@@ -15,7 +15,7 @@ class DetailPage extends StatelessWidget {
           children: [
             // Top image with overlay
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(
