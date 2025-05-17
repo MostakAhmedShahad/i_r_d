@@ -27,7 +27,7 @@ class DetailPage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                     Container(
-                      height: screenHeight * 0.35,
+                      height: screenHeight * 0.36,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
