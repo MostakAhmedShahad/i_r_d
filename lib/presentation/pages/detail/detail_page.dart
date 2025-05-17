@@ -74,7 +74,7 @@ class DetailPage extends StatelessWidget {
                           SizedBox(height: 4),
                           Text(property.location,
                               style:
-                                  TextStyle(color: Colors.white70, fontSize: 14)),
+                                  TextStyle(color: Colors.white70, fontSize: 15)),
                           SizedBox(height: 8),
                           Row(
                             children: [
