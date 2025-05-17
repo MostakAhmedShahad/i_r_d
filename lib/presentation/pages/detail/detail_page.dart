@@ -60,7 +60,7 @@ class DetailPage extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      bottom: 16,
+                      bottom: 15,
                       left: 16,
                       right: 16,
                       child: Column(
