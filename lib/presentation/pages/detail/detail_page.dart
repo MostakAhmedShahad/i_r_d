@@ -159,7 +159,7 @@ class DetailPage extends StatelessWidget {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                             image: NetworkImage(property.gallery[index]),
                             fit: BoxFit.cover,
