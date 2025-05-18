@@ -136,7 +136,7 @@ class DetailPage extends StatelessWidget {
                       Row(
                         children: [
                           _contactIcon(Icons.phone),
-                          SizedBox(width: 8),
+                          SizedBox(width: 12),
                           _contactIcon(Icons.message),
                         ],
                       ),
