@@ -173,7 +173,7 @@ class DetailPage extends StatelessWidget {
 
                   // Map
                   Text('Location',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   SizedBox(height: 10),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
