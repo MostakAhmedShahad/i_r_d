@@ -148,7 +148,7 @@ class DetailPage extends StatelessWidget {
                   // Gallery
                   Text('Gallery',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 10),
+                  SizedBox(height: 12),
                   SizedBox(
                     height: 100,
                     child: ListView.builder(
