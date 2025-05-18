@@ -143,7 +143,7 @@ class DetailPage extends StatelessWidget {
                     ],
                   ),
 
-                  Divider(height: 30),
+                  Divider(height: 32),
 
                   // Gallery
                   Text('Gallery',
